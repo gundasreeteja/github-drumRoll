@@ -1,11 +1,13 @@
 for (i = 0; i < document.querySelectorAll(".drum").length; i++) {
   document.querySelectorAll("button")[i].addEventListener("click", function () {
     util(this.innerHTML);
+    animate(this.innerHTML);
   });
 }
 
 document.addEventListener("keypress", function (event) {
   util(event.key);
+  animate(event.key);
 });
 
 function util(letter) {
@@ -36,4 +38,12 @@ function util(letter) {
 
 function audioPlay(fileLocation) {
   new Audio(fileLocation).play();
+}
+
+function animate(key) {
+  var btn = document.querySelector("." + key);
+  btn.classList.add("pressed");
+  setTimeout(function () {
+    btn.classList.remove("pressed");
+  }, 200);
 }
